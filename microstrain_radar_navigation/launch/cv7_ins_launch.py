@@ -38,8 +38,8 @@ def generate_launch_description():
       output='both',
       parameters=[_UBLOX_CONFIG_FILE],
       remappings=[
-        ('/ublox_gps_node/fix','/cv7_ins/ext/llh_position'),
-        ('/ublox_gps_node/fix_velocity','/cv7_ins/ext/velocity_enu')
+        ('/fix','/cv7_ins/ext/llh_position'),
+        ('/fix_velocity','/cv7_ins/ext/velocity_enu')
       ]),    
 
     # Publish a static transform for where the our fake sensor is mounted on base_link.

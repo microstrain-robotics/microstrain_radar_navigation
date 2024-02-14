@@ -15,7 +15,7 @@
   <depend>rclcpp</depend>
   <depend>gtsam</depend>
   <depend>microstrain_inertial_driver</depend>
-  <depend>ublox_gps</depend>
+  <depend>ublox</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
