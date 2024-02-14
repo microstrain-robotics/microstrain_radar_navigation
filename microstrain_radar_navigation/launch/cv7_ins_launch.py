@@ -40,7 +40,12 @@ def generate_launch_description():
       remappings=[
         ('/fix','/cv7_ins/ext/llh_position'),
         ('/fix_velocity','/cv7_ins/ext/velocity_enu')
-      ]),    
+      ]),
+      
+    Node(
+      package='ms_radar_velocity_processing_node',
+      executable='ms_radar_velocity_processing_node',
+      output='screen'),    
 
     # Publish a static transform for where the our fake sensor is mounted on base_link.
     # You should replace this with actual transforms for where your aiding sensors are
