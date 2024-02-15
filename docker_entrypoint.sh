@@ -7,6 +7,7 @@ source /ros2_ws/install/setup.bash
 
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export CYCLONEDDS_URI=file:////cyclone_dds_config.xml
+export ROS_LOCALHOST_ONLY=1
 
 exec ros2 launch microstrain_radar_navigation cv7_ins_launch.py
 

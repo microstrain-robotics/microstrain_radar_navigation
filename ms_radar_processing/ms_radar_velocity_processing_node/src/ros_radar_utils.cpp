@@ -17,21 +17,15 @@ namespace ms_radar_velocity_processing_node
 
         for (const auto& channel : point_cloud_message.channels)
         {
-            if (channel.name == "Doppler")
-            {
-                
-                
-                RCLCPP_WARN(rclcpp::get_logger("Utils"), "%ld SIZE", channel.values.size());
-                
+            if (channel.name == "Doppler") 
                 output_radar_point_cloud.speed.insert(output_radar_point_cloud.speed.end(), channel.values.begin(), channel.values.end());
-            }
+            
             if (channel.name == "Power")
                 output_radar_point_cloud.power.insert(output_radar_point_cloud.power.end(), channel.values.begin(), channel.values.end());
         }
 
         for (const auto& ros_point : point_cloud_message.points)
         {
-            RCLCPP_WARN(rclcpp::get_logger("Utils"), "x: %f, y: %f, z: %f ", ros_point.x, ros_point.y, ros_point.z);
             output_radar_point_cloud.points.emplace_back(ros_point.x, ros_point.y, ros_point.z);
         }
         if (output_radar_point_cloud.points.size() != output_radar_point_cloud.speed.size())

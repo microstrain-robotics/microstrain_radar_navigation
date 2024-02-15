@@ -25,11 +25,9 @@ namespace ms_radar_velocity_processing_node {
 
     void RadarVelocityNode::handle_input_point_cloud(sensor_msgs::msg::PointCloud::SharedPtr point_cloud_msg)
     {
-        RCLCPP_WARN(get_logger(), "Converting from ros message");
         ms_radar_velocity_processing::RadarPointCloud radar_point_cloud = convert_from_ros_message(*point_cloud_msg);
 
         // Get configuration
-        RCLCPP_WARN(get_logger(), "Getting min point distance");
         ms_radar_velocity_processing::RadarVelocitySettings radar_velocity_settings;
         radar_velocity_settings.min_distance = get_min_point_distance();
 
@@ -40,8 +38,6 @@ namespace ms_radar_velocity_processing_node {
             RCLCPP_WARN(get_logger(), "Failed to calculate radar velocity estimate");
             return;
         }
-
-        RCLCPP_WARN(get_logger(), "Calculating Estimate");
         
         geometry_msgs::msg::TwistWithCovarianceStamped output_twist_with_cov_msg;
         output_twist_with_cov_msg.header = point_cloud_msg->header;
