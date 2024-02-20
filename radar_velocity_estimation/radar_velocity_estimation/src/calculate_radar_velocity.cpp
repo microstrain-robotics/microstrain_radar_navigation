@@ -1,16 +1,15 @@
 //
 // Created by davidrobbins on 11/28/23.
 //
-#include "rclcpp/rclcpp.hpp"
 
 #include "gtsam/nonlinear/LevenbergMarquardtOptimizer.h"
 #include "gtsam/nonlinear/Marginals.h"
 
-#include "ms_radar_velocity_processing/calculate_radar_velocity.h"
+#include "radar_velocity_estimation/calculate_radar_velocity.h"
 
 #include "RadialVelocityFactor.h"
 
-namespace ms_radar_velocity_processing
+namespace radar_velocity_estimation
 {
     std::tuple<bool, Eigen::Vector3d, Eigen::Matrix3d> caluclate_radar_velocity_with_covariance(const RadarPointCloud& radar_point_cloud, const RadarVelocitySettings& radar_velocity_settings)
     {
@@ -62,9 +61,7 @@ namespace ms_radar_velocity_processing
             solution_valid = true;
         }
         catch (const gtsam::IndeterminantLinearSystemException& e)
-        {
-            RCLCPP_WARN(rclcpp::get_logger("Log"), "Caught Exception");
-        }
+        {}
 
         double target_x_covariance = pow(.15, 2);
         double covariance_scaling = target_x_covariance/velocity_covariance(0,0);

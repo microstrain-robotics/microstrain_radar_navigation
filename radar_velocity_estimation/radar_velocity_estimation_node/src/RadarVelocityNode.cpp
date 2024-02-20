@@ -2,14 +2,14 @@
 // Created by davidrobbins on 11/28/23.
 //
 
-#include "ms_radar_velocity_processing_node/RadarVelocityNode.h"
-#include "ms_radar_velocity_processing_node/topics.h"
-#include "ms_radar_velocity_processing_node/ros_radar_utils.h"
+#include "radar_velocity_estimation_node/RadarVelocityNode.h"
+#include "radar_velocity_estimation_node/topics.h"
+#include "radar_velocity_estimation_node/ros_radar_utils.h"
 
-#include "ms_radar_velocity_processing/calculate_radar_velocity.h"
+#include "radar_velocity_estimation/calculate_radar_velocity.h"
 
 
-namespace ms_radar_velocity_processing_node {
+namespace radar_velocity_estimation_node {
     RadarVelocityNode::RadarVelocityNode(const std::string& node_name) : rclcpp::Node(node_name)
     {
         // Parameters
@@ -25,13 +25,13 @@ namespace ms_radar_velocity_processing_node {
 
     void RadarVelocityNode::handle_input_point_cloud(sensor_msgs::msg::PointCloud::SharedPtr point_cloud_msg)
     {
-        ms_radar_velocity_processing::RadarPointCloud radar_point_cloud = convert_from_ros_message(*point_cloud_msg);
+        radar_velocity_estimation::RadarPointCloud radar_point_cloud = convert_from_ros_message(*point_cloud_msg);
 
         // Get configuration
-        ms_radar_velocity_processing::RadarVelocitySettings radar_velocity_settings;
+        radar_velocity_estimation::RadarVelocitySettings radar_velocity_settings;
         radar_velocity_settings.min_distance = get_min_point_distance();
 
-        auto [solution_valid, velocity, velocity_covariance] = ms_radar_velocity_processing::caluclate_radar_velocity_with_covariance(radar_point_cloud, radar_velocity_settings);
+        auto [solution_valid, velocity, velocity_covariance] = radar_velocity_estimation::caluclate_radar_velocity_with_covariance(radar_point_cloud, radar_velocity_settings);
 
         if (!solution_valid)
         {
@@ -64,4 +64,4 @@ namespace ms_radar_velocity_processing_node {
     std::shared_ptr<std_srvs::srv::Trigger::Response> response)
     {
     }
-} // ms_radar_velocity_processing_node
+} // radar_velocity_estimation_node

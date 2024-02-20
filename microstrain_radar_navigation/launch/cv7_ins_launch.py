@@ -43,8 +43,8 @@ def generate_launch_description():
       ]),
       
     Node(
-      package='ms_radar_velocity_processing_node',
-      executable='ms_radar_velocity_processing_node',
+      package='radar_velocity_estimation_node',
+      executable='radar_velocity_estimation_node',
       output='screen'),    
 
     # Publish a static transform for where the our fake sensor is mounted on base_link.

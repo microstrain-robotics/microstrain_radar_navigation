@@ -4,7 +4,7 @@
 
 #include "RadialVelocityFactor.h"
 
-namespace ms_radar_velocity_processing {
+namespace radar_velocity_estimation {
 
     gtsam::Vector BodyframeVelocityFactor::evaluateError(const gtsam::Vector3& velocity_estimate,boost::optional<gtsam::Matrix&> H1) const
     {
@@ -16,4 +16,4 @@ namespace ms_radar_velocity_processing {
 
         return error;
     }
-} // ms_radar_velocity_processing
+} // radar_velocity_estimation

@@ -7,11 +7,11 @@
 
 #include "sensor_msgs/msg/point_cloud.hpp"
 
-#include "ms_radar_velocity_processing/data.h"
+#include "radar_velocity_estimation/data.h"
 
-namespace ms_radar_velocity_processing_node
+namespace radar_velocity_estimation_node
 {
-    ms_radar_velocity_processing::RadarPointCloud convert_from_ros_message(const sensor_msgs::msg::PointCloud& point_cloud_message);
+    radar_velocity_estimation::RadarPointCloud convert_from_ros_message(const sensor_msgs::msg::PointCloud& point_cloud_message);
 
     template<int rows, int cols>
     std::array<double, rows * cols> from_eigen_covariance(const Eigen::Matrix<double, rows, cols> covariance)

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(ms_radar_velocity_processing_node)
+project(radar_velocity_estimation_node)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -13,39 +13,39 @@ find_package(geometry_msgs)
 find_package(tf2_ros)
 find_package(std_srvs)
 
-find_package(ms_radar_velocity_processing)
+find_package(radar_velocity_estimation)
 
 include_directories(${EIGEN3_INCLUDE_DIR})
 
-set(PROJECT_DEPENDENCIES rclcpp sensor_msgs geometry_msgs tf2_ros std_srvs ms_radar_velocity_processing)
+set(PROJECT_DEPENDENCIES rclcpp sensor_msgs geometry_msgs tf2_ros std_srvs radar_velocity_estimation)
 
 set(PROJECT_SOURCE
         src/RadarVelocityNode.cpp
-        include/ms_radar_velocity_processing_node/RadarVelocityNode.h
-        include/ms_radar_velocity_processing_node/topics.h
+        include/radar_velocity_estimation_node/RadarVelocityNode.h
+        include/radar_velocity_estimation_node/topics.h
         src/ros_radar_utils.cpp
-        include/ms_radar_velocity_processing_node/ros_radar_utils.h)
+        include/radar_velocity_estimation_node/ros_radar_utils.h)
 
 
-add_executable(ms_radar_velocity_processing_node src/ms_radar_velocity_processing_node.cpp ${PROJECT_SOURCE})
+add_executable(radar_velocity_estimation_node src/radar_velocity_estimation_node.cpp ${PROJECT_SOURCE})
 
-target_include_directories(ms_radar_velocity_processing_node PUBLIC
+target_include_directories(radar_velocity_estimation_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(ms_radar_velocity_processing_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_compile_features(radar_velocity_estimation_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-ament_target_dependencies(ms_radar_velocity_processing_node ${PROJECT_DEPENDENCIES})
-target_link_libraries(ms_radar_velocity_processing_node gtsam)
+ament_target_dependencies(radar_velocity_estimation_node ${PROJECT_DEPENDENCIES})
+target_link_libraries(radar_velocity_estimation_node gtsam)
 
-add_library(ms_radar_velocity_processing_node_lib ${PROJECT_SOURCE})
-target_include_directories(ms_radar_velocity_processing_node_lib PUBLIC
+add_library(radar_velocity_estimation_node_lib ${PROJECT_SOURCE})
+target_include_directories(radar_velocity_estimation_node_lib PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
-target_compile_features(ms_radar_velocity_processing_node_lib PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-ament_target_dependencies(ms_radar_velocity_processing_node_lib ${PROJECT_DEPENDENCIES})
+target_compile_features(radar_velocity_estimation_node_lib PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+ament_target_dependencies(radar_velocity_estimation_node_lib ${PROJECT_DEPENDENCIES})
 ament_export_dependencies(${PROJECT_DEPENDENCIES})
 
-install(TARGETS ms_radar_velocity_processing_node
+install(TARGETS radar_velocity_estimation_node
   DESTINATION lib/${PROJECT_NAME})
 
 install(
@@ -54,7 +54,7 @@ install(
 )
 
 install(
-        TARGETS ms_radar_velocity_processing_node_lib
+        TARGETS radar_velocity_estimation_node_lib
         EXPORT export_${PROJECT_NAME}
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
@@ -78,7 +78,7 @@ ament_export_include_directories(
         include
 )
 ament_export_libraries(
-        ms_radar_velocity_processing_node_lib
+        radar_velocity_estimation_node_lib
 )
 ament_export_targets(
         export_${PROJECT_NAME}

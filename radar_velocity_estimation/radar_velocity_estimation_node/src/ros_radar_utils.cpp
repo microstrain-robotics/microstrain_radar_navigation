@@ -3,23 +3,23 @@
 //
 #include <optional>
 
-#include "ms_radar_velocity_processing_node/ros_radar_utils.h"
+#include "radar_velocity_estimation_node/ros_radar_utils.h"
 
 #include "rclcpp/rclcpp.hpp"
 
-namespace ms_radar_velocity_processing_node
+namespace radar_velocity_estimation_node
 {
-    ms_radar_velocity_processing::RadarPointCloud convert_from_ros_message(const sensor_msgs::msg::PointCloud& point_cloud_message)
+    radar_velocity_estimation::RadarPointCloud convert_from_ros_message(const sensor_msgs::msg::PointCloud& point_cloud_message)
     {
-        ms_radar_velocity_processing::RadarPointCloud output_radar_point_cloud;
+        radar_velocity_estimation::RadarPointCloud output_radar_point_cloud;
 
         output_radar_point_cloud.timestamp = double(point_cloud_message.header.stamp.sec) + double(point_cloud_message.header.stamp.nanosec)*1e-9;
 
         for (const auto& channel : point_cloud_message.channels)
         {
-            if (channel.name == "Doppler") 
+            if (channel.name == "Doppler")   
                 output_radar_point_cloud.speed.insert(output_radar_point_cloud.speed.end(), channel.values.begin(), channel.values.end());
-            
+                
             if (channel.name == "Power")
                 output_radar_point_cloud.power.insert(output_radar_point_cloud.power.end(), channel.values.begin(), channel.values.end());
         }

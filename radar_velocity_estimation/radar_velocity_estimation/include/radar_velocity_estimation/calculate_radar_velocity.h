@@ -9,7 +9,7 @@
 
 #include "data.h"
 
-namespace ms_radar_velocity_processing
+namespace radar_velocity_estimation
 {
     struct RadarVelocitySettings
     {

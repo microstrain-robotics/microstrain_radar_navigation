@@ -13,7 +13,7 @@
 
 #include "std_srvs/srv/trigger.hpp"
 
-namespace ms_radar_velocity_processing_node {
+namespace radar_velocity_estimation_node {
 
     class RadarVelocityNode : public rclcpp::Node
     {
@@ -47,6 +47,6 @@ namespace ms_radar_velocity_processing_node {
 
         std::optional<std::string> _radar_frame_id;
     };
-} // ms_radar_velocity_processing_node
+} // radar_velocity_estimation_node
 
 #endif //RADARVELOCITYNODE_H

@@ -4,7 +4,7 @@
 #include "tf2_ros/buffer.h"
 using std::placeholders::_1;
 
-namespace ms_radar_velocity_processing 
+namespace radar_velocity_estimation 
 {
     class RadarVelTransform : public rclcpp::Node
     {

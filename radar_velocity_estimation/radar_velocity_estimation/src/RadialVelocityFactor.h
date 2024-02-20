@@ -7,7 +7,7 @@
 
 #include <gtsam/nonlinear/NonlinearFactor.h>
 
-namespace ms_radar_velocity_processing {
+namespace radar_velocity_estimation {
 
     class BodyframeVelocityFactor  : public gtsam::NoiseModelFactor1<gtsam::Vector3>
     {
@@ -30,6 +30,6 @@ namespace ms_radar_velocity_processing {
         double _speed_measurement;
     };
 
-} // ms_radar_velocity_processing
+} // radar_velocity_estimation
 
 #endif //RADIALVELOCITYFACTOR_H

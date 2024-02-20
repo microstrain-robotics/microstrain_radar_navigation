@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace ms_radar_velocity_processing_node::topics
+namespace radar_velocity_estimation_node::topics
 {
     const std::string ROS_INPUT_RADAR_TOPIC_NAME = "/radar_pcl";
 
