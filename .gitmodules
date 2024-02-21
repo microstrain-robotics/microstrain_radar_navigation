@@ -2,3 +2,6 @@
 	path = microstrain_inertial
 	url = https://github.com/LORD-MicroStrain/microstrain_inertial.git
 	branch = ros2
+[submodule "radar_velocity_estimation"]
+	path = radar_velocity_estimation
+	url = https://github.com/microstrain-robotics/radar_velocity_estimation.git
