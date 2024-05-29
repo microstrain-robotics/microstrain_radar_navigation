@@ -21,7 +21,7 @@
     #   earth_frame_id -> map_frame_id
     #   map_frame_id -> target_frame_id
     # This helps ROS standard tools consume and display position information produced by the device
-    tf_mode: 0
+    tf_mode: 2
 
     # We will use auto relative position configuration for this example. This configuration does a couple things:
     #   We will setup a local tangent plane at the first location we receive after the device enters full navigation mode

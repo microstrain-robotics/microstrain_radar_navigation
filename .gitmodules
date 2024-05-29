@@ -5,3 +5,6 @@
 [submodule "radar_velocity_estimation"]
 	path = radar_velocity_estimation
 	url = https://github.com/microstrain-robotics/radar_velocity_estimation.git
+[submodule "smartmicro_ros2_radars"]
+	path = smartmicro_ros2_radars
+	url = https://github.com/smartmicro/smartmicro_ros2_radars.git
