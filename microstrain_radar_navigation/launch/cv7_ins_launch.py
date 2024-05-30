@@ -12,8 +12,9 @@ _MICROSTRAIN_LAUNCH_FILE = os.path.join(ament_index_python.packages.get_package_
 _CV7_INS_PARAMS_FILE = os.path.join(ament_index_python.packages.get_package_share_directory('microstrain_radar_navigation'), 'config', 'cv7_ins', 'cv7_ins.yml')
 _RVIZ_DISPLAY_FILE = os.path.join(ament_index_python.packages.get_package_share_directory('microstrain_radar_navigation'), 'config', 'cv7_ins', 'display.rviz')
 
-_UBLOX_CONFIG_DIRECTORY = os.path.join(ament_index_python.packages.get_package_share_directory('microstrain_radar_navigation'), 'config')
-_UBLOX_CONFIG_FILE = os.path.join(_UBLOX_CONFIG_DIRECTORY, 'zed_f9p.yaml')
+_CONFIG_DIRECTORY = os.path.join(ament_index_python.packages.get_package_share_directory('microstrain_radar_navigation'), 'config')
+_UBLOX_CONFIG_FILE = os.path.join(_CONFIG_DIRECTORY, 'zed_f9p.yaml')
+_SMARTMICRO_CONFIG_FILE = os.path.join(_CONFIG_DIRECTORY, 'radar_params.yaml')
 
 def generate_launch_description():
   return LaunchDescription([
@@ -36,15 +37,22 @@ def generate_launch_description():
       output='both',
       parameters=[_UBLOX_CONFIG_FILE],
       remappings=[
-        ('/ublox_gps_node/fix','/cv7_ins/ext/llh_position'),
-        ('/ublox_gps_node/fix_velocity','/cv7_ins/ext/velocity_enu')
+        ('/fix','/cv7_ins/ext/llh_position'),
+        ('/fix_velocity','/cv7_ins/ext/velocity_enu')
       ]),
+
+    # SmartMicro Radar Node
+    Node(
+      package='umrr_ros2_driver',
+      executable='smartmicro_radar_node_exe',
+      name='smart_radar',
+      parameters=[_SMARTMICRO_CONFIG_FILE]),
 
     # Radar Processing Node  
     Node(
-     package='radar_velocity_estimation_node',
-     executable='radar_velocity_estimation_node',
-     output='screen'),    
+      package='radar_velocity_estimation_node',
+      executable='radar_velocity_estimation_node',
+      output='screen'),    
 
     # Publish a static transform for where the our gps is mounted on base_link.
     # You should replace this with actual transforms for where your aiding sensors are
