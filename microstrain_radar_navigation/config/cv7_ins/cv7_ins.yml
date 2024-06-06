@@ -1,3 +1,13 @@
+#####################################################################################################
+##
+## Copyright (c)  2024, Microstrain by HBK
+##
+## Use of this source code is governed by an MIT-style
+## license that can be found in the LICENSE file or at
+## https://opensource.org/licenses/MIT.
+##
+#####################################################################################################
+
 /cv7_ins/microstrain_inertial_driver:
   ros__parameters:
     # You should change this section of config to match your setup
