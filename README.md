@@ -39,8 +39,6 @@ The use of the PCAN adapter is recommended, as widely used Linux kernels already
    ```
    source /opt/ros/humble/setup.bash
    source /your_workspace/install/setup.bash
-
-   export ROS_LOCALHOST_ONLY=1
    ```
    The source commands need to be run on every terminal before launching the node or these lines can just be added to the .bashrc
 
