@@ -1,22 +1,21 @@
 ## Description
-An example of interfacing the CV7-INS with a GNSS receiver and a Radar sensor. <br />
-The integration utilizes GNSS position and velocity data from the GNSS receiver, combined with body frame velocity data from the radar point cloud, as aiding measurements for the CV7-INS. The implementation is developed using the ROS2 framework.
+This example demonstrates the integration of a MicroStrain CV7-INS with a GNSS receiver and a mmWave radar sensor. It utilizes GNSS position and velocity data from the GNSS receiver, combined with body frame velocity data from the radar point cloud, as aiding measurements for the CV7-INS. The implementation is developed using the ROS2 framework.
 
 ## Hardware
 The following hardware components are utilized in this setup:
- * [`CV7-INS`](https://www.microstrain.com/inertial-sensors/3dm-cv7-ins) - The Inertial Navigation System
- * [`Ublox ZED-F9P`](https://www.u-blox.com/en/product/zed-f9p-module) - The GNSS Module
- * [`Smartmicro DRVEGRD 152`](https://www.smartmicro.com/automotive-radar/drvegrd-line) - The Automotive Radar Sensor
- * [`PCAN-USB FD Adapter`](https://www.peak-system.com/PCAN-USB-FD.365.0.html?&L=1) - Allows the Connection of the Radar CAN Network to a Comupter through USB <br />
+ * [`MicroStrain CV7-INS`](https://www.microstrain.com/inertial-sensors/3dm-cv7-ins) - Core Inertial Navigation System with onboard IMU and EKF for sensor fusion
+ * [`Ublox ZED-F9P`](https://www.u-blox.com/en/product/zed-f9p-module) - GNSS Module
+ * [`Smartmicro DRVEGRD 152`](https://www.smartmicro.com/automotive-radar/drvegrd-line) - Automotive mmWave radar sensor
+ * [`PCAN-USB FD Adapter`](https://www.peak-system.com/PCAN-USB-FD.365.0.html?&L=1) - USB CAN-FD adapter to interface with the radar CAN bus through USB<br />
  
 The use of the PCAN adapter is recommended, as widely used Linux kernels already include drivers for PEAK-System's CAN interfaces. Using a different adapter may require additional or alternative steps to configure the interface and set the baudrate.
 
 
 ## Contents
-  * [`microstrain_inertial`](https://github.com/LORD-MicroStrain/microstrain_inertial) -- Driver software for the Microstrain Inertial Sensors (Submoduled) <br />
-  * [`smartmicro_ros2_radars`](https://github.com/smartmicro/smartmicro_ros2_radars/tree/master) -- Driver software for the Smartmicro Radars (Submoduled) <br />
-  * [`radar_velocity_estimation`](https://github.com/microstrain-robotics/radar_velocity_estimation) -- Software to Estimate Body Frame Velocities from the Radar Point Cloud (Submoduled) <br />
-  * `microstrain_radar_navigation` -- The Example that shows how to interact with all the different nodes.
+  * [`microstrain_inertial`](https://github.com/LORD-MicroStrain/microstrain_inertial) -- ROS driver for the CV7-INS(Submoduled) <br />
+  * [`smartmicro_ros2_radars`](https://github.com/smartmicro/smartmicro_ros2_radars/tree/master) -- ROS driver for the Smartmicro radar (Submoduled) <br />
+  * [`radar_velocity_estimation`](https://github.com/microstrain-robotics/radar_velocity_estimation) -- Software to process the raw radar point cloud and estimate a bodyframe velocity measurement (Submoduled) <br />
+  * `microstrain_radar_navigation` -- Example package that demonstrates how to configure and launch all nodes
 
 ## Building from Source
 1. Install [ROS2](https://docs.ros.org/en/humble/Installation.html) and [Create a Workspace](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
@@ -44,20 +43,20 @@ The use of the PCAN adapter is recommended, as widely used Linux kernels already
 
 ## Building the Docker Image
 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
-2. Clone the Repository into your workspace:
+2. Clone the repository into your workspace:
    ```
    git clone https://github.com/microstrain-robotics/microstrain_radar_navigation.git --recursive
    ```
-2. Navigate to the Workspace and Build the Image
+2. Navigate to the workspace and build the Docker image
    ```
    cd ~/your_workspace/src/microstrain_radar_navigation
    docker build -t microstrain_radar_navigation .
    ```
    
 ## Launch Instructions
-1. Make sure the sensors are connected to their corresponding ports
-   * TTYACM0 - CV7_INS 
-   * TTYACM1 - Ublox ZED-F9P <br />
+1. Make sure the sensors are connected to their corresponding ports (or change port names in the relevant [configuration YAML](microstrain_radar_navigation/config) files)
+   * TTYACM0 - CV7-INS 
+   * TTYACM1 - Ublox ZED-F9P
    * The SmartMicro DRVEGRD 152 is connected using a PCAN-USB FD Adapter.
 
 2. Set the Baudrate for the PCAN Adapter
