@@ -12,7 +12,7 @@ The use of the PCAN adapter is recommended, as widely used Linux kernels already
 
 
 ## Contents
-  * [`microstrain_inertial`](https://github.com/LORD-MicroStrain/microstrain_inertial) -- ROS driver for the CV7-INS(Submoduled) <br />
+  * [`microstrain_inertial`](https://github.com/LORD-MicroStrain/microstrain_inertial) -- ROS driver for the CV7-INS (Submoduled) <br />
   * [`smartmicro_ros2_radars`](https://github.com/smartmicro/smartmicro_ros2_radars/tree/master) -- ROS driver for the Smartmicro radar (Submoduled) <br />
   * [`radar_velocity_estimation`](https://github.com/microstrain-robotics/radar_velocity_estimation) -- Software to process the raw radar point cloud and estimate a bodyframe velocity measurement (Submoduled) <br />
   * `microstrain_radar_navigation` -- Example package that demonstrates how to configure and launch all nodes
