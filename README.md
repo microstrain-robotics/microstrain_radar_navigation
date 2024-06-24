@@ -34,12 +34,6 @@ The use of the PCAN adapter is recommended, as widely used Linux kernels already
    cd ~/your_workspace
    colcon build
    ```
-6. Source ROS2, the Workspace and Set Environment Variables
-   ```
-   source /opt/ros/humble/setup.bash
-   source /your_workspace/install/setup.bash
-   ```
-   The source commands need to be run on every terminal before launching the node or these lines can just be added to the .bashrc
 
 ## Building the Docker Image
 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
@@ -65,6 +59,7 @@ The use of the PCAN adapter is recommended, as widely used Linux kernels already
     ```
 3. Launch the Node (Building from Source)
    ```
+   source /your_workspace/install/setup.bash
    ros2 launch microstrain_radar_navigation cv7_ins_launch.py
    ```
 4. Launch the Node (Using the Docker Image)
