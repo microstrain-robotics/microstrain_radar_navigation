@@ -1,6 +1,8 @@
 ## Description
 This example demonstrates the integration of a MicroStrain CV7-INS with a GNSS receiver and a mmWave radar sensor. It utilizes GNSS position and velocity data from the GNSS receiver, combined with body frame velocity data from the radar point cloud, as aiding measurements for the CV7-INS. The implementation is developed using the ROS2 framework.
 
+The details pertaining to the performance are available within the [Whitepaper document](https://microstrain.com/content/enhancing-inertial-navigation-system-performance-with-radar).
+
 ## Hardware
 The following hardware components are utilized in this setup:
  * [`MicroStrain CV7-INS`](https://www.microstrain.com/inertial-sensors/3dm-cv7-ins) - Core Inertial Navigation System with onboard IMU and EKF for sensor fusion
